@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>drawImage</title>
+</head>
+<body>
+	<canvas id="canvas" style="margin: 50px;border: 1px solid black;"></canvas>
+	<canvas id="waterMark" style="display: none;"></canvas>
+	<input type="range" id="range" value="1.0" max="3" min="0.5" step="0.01" style="margin-top:30px;display: block">
+	
+</body>
+<script>
+
+	window.onload = function(){
+		var canvas = document.getElementById("canvas");
+		var slider = document.getElementById('range');
+		var waterMark = document.getElementById('waterMark');  //水印
+
+		canvas.width = 800;
+		canvas.height = 800;
+		waterMark.width = 300;
+		waterMark.height = 100;
+
+        var image = new Image();
+        image.src ="image/pgy.jpg";
+        image.width = 606;
+        image.height = 484;
+ 
+		var context = canvas.getContext('2d');
+		var waterContext = waterMark.getContext('2d');
+
+		context.strokeRect(0,0,800,800);
+       waterContext.font="bold 50px Arial";
+        waterContext.fillStyle = "rgba(0,0,0,0.3)";
+        waterContext.fillText("1076649636",20,80);
+        waterContext.textBaseline = "middle";
+
+    var val = slider.value;
+    image.onload = function(){
+    	drawImageScale(val);
+    	slider.onmousemove = function(){
+    	    val = this.value;
+    		drawImageScale(val);
+    	}
+        
+    }
+
+    function drawImageScale(scale){
+      var imageWidth  = image.width * scale;
+      var imageHeight = image.height * scale;
+
+      var vx =( canvas.width-imageWidth )/2;  //注意这里的思路
+      var vy = ( canvas.height-imageHeight )/2;
+      
+      context.clearRect(0,0,canvas.width,canvas.height);
+      context.drawImage(image,vx,vy, imageWidth,imageHeight);
+      context.drawImage(waterMark,canvas.width - waterMark.width,canvas.height - waterMark.height);
+	}
+
+}
+
+	
+</script>
+</html>

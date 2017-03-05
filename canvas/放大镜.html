@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>放大镜</title>
+</head>
+<body>
+	<canvas id="canvas" style="border: 1px solid black;margin: 50px;"></canvas>
+	<canvas id="lg_canvas" style="margin: 50px; display: none;"></canvas>
+<script>
+//实现原理，一个大的图片，可以放到一个小的区域内，相当于缩影，
+//在小画布上按下鼠标并移动时,在大的画布上找到相对就的坐标点，并将以此为圆心
+//mr为半径的区域内映射到小的画布上。
+
+	window.onload = function(){
+	   var canvas = document.getElementById("canvas");
+	   var lg_canvas = document.getElementById("lg_canvas");
+ 
+	   var context = canvas.getContext('2d');
+	   var lg_context = lg_canvas.getContext('2d');
+
+       var isMousedown =false;     //判断鼠标是否已经点击下去了
+       var scale;                    //放大的倍数
+	   
+	   canvas.width = 1152;
+	   canvas.height = 768;
+    
+	   var image = new Image();
+	   image.src = 'image/img-lg.jpg';
+
+	   image.onload = function(){
+
+	   	 lg_canvas.width = image.width;   //图片加载完后，再来设置放大镜所在画布的大小
+         lg_canvas.height = image.height;
+         scale = lg_canvas.width / canvas.width;   
+
+	   	context.drawImage(image,0,0,canvas.width,canvas.height);
+	   	lg_context.drawImage(image,0,0);
+	   }
+
+       function getPosition(x,y){
+        var box = canvas.getBoundingClientRect();
+        return {x:x-box.x,y:y-box.y};
+	   }
+
+	   canvas.onmousedown = function(e){
+	   	e.preventDefault();
+	   	isMousedown = true;
+	   	var point = getPosition(e.clientX,e.clientY);
+	   	drawCanvasWithMagnifier(true,point);
+	   }
+
+	   canvas.onmouseup = function(){
+	   	isMousedown = false;
+	   	drawCanvasWithMagnifier(false);
+	   }
+
+	   canvas.onmousemove = function(e){
+	   	if(isMousedown == true){
+	   	e.preventDefault();
+        var point = getPosition(e.clientX,e.clientY);
+
+        drawCanvasWithMagnifier(true,point);
+	   	}
+        var point = getPosition(e.clientX,e.clientY);
+        drawCanvasWithMagnifier(true,point);
+	   }
+
+	 canvas.onmouseout = function(){
+	 	isMousedown = false;
+	 	drawCanvasWithMagnifier(false);
+	 }
+	 
+	function drawCanvasWithMagnifier(isLg,pos){
+		context.clearRect( 0 , 0 , canvas.width , canvas.height )   //先清空
+        context.drawImage( image , 0 , 0 , canvas.width , canvas.height );
+         if(isLg == true){
+         	drawMagnifier(pos);
+         }
+	   }
+	function drawMagnifier(pos){
+       var lgX = pos.x * scale;
+       var lgY = pos.y * scale;
+
+       var mr = 200;
+
+       var sx = lgX - mr;
+       var sy = lgY - mr;
+
+       var dx = pos.x - mr;
+       var dy = pos.y - mr;
+
+	    context.save()
+
+	    context.lineWidth = 10.0
+	    context.strokeStyle = "#069"
+
+	    context.beginPath()
+	    context.arc( pos.x , pos.y , mr , 0 , Math.PI*2 , false )
+	    context.stroke()
+	    context.clip()    //使用图片裁剪的方式，画出放大镜的形状
+
+       context.drawImage(lg_canvas,sx,sy,mr*2,mr*2,dx,dy,mr*2,mr*2);
+        //注意此方法的调用，在lo_canvas画布sx,sy处长为mr*2,宽为mr*2的大小映射到canvas画布上dx,dy处，长为mr*2,宽为mr*2处
+       context.restore();
+	}
+
+	}
+</script>
+</body>
+</html>

@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <style>
+        html{
+            background: linear-gradient(#ff0 0%, #000 80%);
+            height: 100%;
+        }
+        .warp{
+            perspective:1000px;;
+            margin-top:150px;
+        }
+        .cube{
+            margin: auto;
+            width: 200px;
+            height: 200px;
+            position: relative;
+            transform-style: preserve-3d;
+            /*transform: rotateY(90deg);*/
+            animation: move 20s infinite linear;
+        }
+        .cube>div{
+            width: 100%;
+            height: 100%;
+            position: absolute;
+           color:#fff;
+            font-weight: bold;
+            text-align: center;
+            line-height: 200px;
+            font-size: 36px;
+            font-family: "Microsoft Yahei";
+            border: 1px #fff solid;
+            background:#333;
+            opacity: 0.9;
+            transition: all 0.5s linear;
+        }
+        .out-font{
+            transform: translateZ(100px);
+        }
+        .out-back{
+            transform: rotateY(180deg) translateZ(100px);
+        }
+        .out-left{
+            transform: rotateY(90deg) translateZ(100PX);
+            /*display: none;*/
+        }
+        .out-right{
+            transform: rotateY(-90deg) translateZ(100px);
+            /*display: none;*/
+        }
+        .out-top{
+            transform: rotateX(90deg) translateZ(100px);
+        }
+        .out-bottom{
+            transform: rotateX(-90deg) translateZ(100PX);
+        }
+/*鼠标移进时的效果*/
+        .warp:hover .out-font{
+            transform: translateZ(200px);
+        }
+        .warp:hover .out-back{
+            transform: rotateY(180deg) translateZ(200px);
+        }
+        .warp:hover .out-left{
+            transform: rotateY(90deg) translateZ(200PX);
+            /*display: none;*/
+        }
+        .warp:hover .out-right{
+            transform: rotateY(-90deg) translateZ(200px);
+            /*display: none;*/
+        }
+        .warp:hover .out-top{
+            transform: rotateX(90deg) translateZ(200px);
+        }
+        .warp:hover .out-bottom{
+            transform: rotateX(-90deg) translateZ(200PX);
+        }
+        /*定制动画*/
+        @keyframes move {
+            0%{
+                transform: rotateX(0deg) rotateY(0deg);
+            }
+            100%{
+                transform: rotateX(360deg) rotateY(360deg);
+            }
+        }
+
+        .cube>span{
+            display: block;
+            width: 100px;
+            height: 100px;
+            border:1px #000 solid;
+            background-color: #999;
+            position: absolute;
+            top: 50px;
+            left: 50px;
+        }
+        .inner-font{
+            transform: translateZ(50px);
+        }
+        .inner-back{
+            transform: rotateY(180deg) translateZ(50px);
+        }
+        .inner-left{
+            transform: rotateY(90deg) translateZ(50PX);
+            /*display: none;*/
+        }
+        .inner-right{
+            transform: rotateY(-90deg) translateZ(50px);
+            /*display: none;*/
+        }
+        .inner-top{
+            transform: rotateX(90deg) translateZ(50px);
+        }
+        .inner-bottom{
+            transform: rotateX(-90deg) translateZ(50PX);
+        }
+
+    </style>
+</head>
+<body>
+
+<div class="warp">
+    <div class="cube">
+        <div class="out-font">前面</div>
+        <div class="out-back">后面</div>
+        <div class="out-left">左面</div>
+        <div class="out-right">右面</div>
+        <div class="out-top">上面</div>
+        <div class="out-bottom">下面</div>
+
+        <span class="inner-font"></span>
+        <span class="inner-back"></span>
+        <span class="inner-left"></span>
+        <span class="inner-right"></span>
+        <span class="inner-top"></span>
+        <span class="inner-bottom"></span>
+    </div>
+</div>
+</body>
+</html>

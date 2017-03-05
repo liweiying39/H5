@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Document</title>
+</head>
+<style type="text/css">
+  /*
+    CSS3中的filter属性：
+    grayscale 灰度         值为0-1之间的小数 
+    sepia 褐色　　　　　　 值为0-1之间的小数
+    saturate 饱和度　　　　值为num
+    hue-rotate 色相旋转　　值为angle
+    invert 反色　　　　　　值为0-1之间的小数
+    opacity 透明度　　　　 值为0-1之间的小数
+    brightness 亮度　　　　值为0-1之间的小数
+    contrast 对比度　　　　值为num
+    blur 模糊　　　　　　  值为length 例如：blur(2px);
+    drop-shadow 阴影       值为length 例如：drop-shadow(5px 5px 5px rgba(0, 0, 0, 0.5));
+  */
+  dl {
+    width: 404px;
+    margin: 20px auto 0;
+  }
+  dl dt{
+    margin-bottom: 10px;
+    border: 2px #fff solid;
+    border-radius: 4px;
+  }
+  dl dt:hover{
+    border: 2px #f00 solid;
+  }
+  dl dt img{
+    width: 400px;
+    height: 249px;
+    vertical-align: top;
+    border-radius: 2px;
+  }
+  dl dd{
+    margin:0 0 40px;
+  }
+  dl dd span{
+    font-size: 14px;
+    color: #f00;
+  }
+</style>
+<body>
+    <dl>
+        <dt><img src="birds.jpg" style="-webkit-filter:none;" /></dt>
+        <dd><strong>无效果：</strong><span>-webkit-filter:none;</span></dd>
+
+        <dt><img src="birds.jpg" style="-webkit-filter:grayscale(.7);" /></dt>
+        <dd><strong>灰度：</strong><span>-webkit-filter:grayscale(.7);</span></dd>
+
+        <dt><img src="birds.jpg" style="-webkit-filter:sepia(.5);" /></dt>
+        <dd><strong>褐色：</strong><span>-webkit-filter:sepia(.5);</span></dd>
+
+        <dt><img src="birds.jpg" style="-webkit-filter:saturate(7.8);" /></dt>
+        <dd><strong>饱和度：</strong><span>-webkit-filter:saturate(7.8);</span></dd>
+
+        <dt><img src="birds.jpg" style="-webkit-filter:hue-rotate(250deg);" /></dt>
+        <dd><strong>色相旋转：</strong><span>-webkit-filter:hue-rotate(250deg);</span></dd>
+
+        <dt><img src="birds.jpg" style="-webkit-filter:invert(.9);" /></dt>
+        <dd><strong>反色：</strong><span>-webkit-filter:invert(.9);</span></dd>
+
+        <dt><img src="birds.jpg" style="-webkit-filter:opacity(.5);" /></dt>
+        <dd><strong>透明度：</strong><span>-webkit-filter:opacity(.5);</span></dd>
+
+        <dt><img src="birds.jpg" style="-webkit-filter:brightness(.5);" /></dt>
+        <dd><strong>亮度：</strong><span>-webkit-filter:brightness(.5);</span></dd>
+
+        <dt><img src="birds.jpg" style="-webkit-filter:contrast(2.5);" /></dt>
+        <dd><strong>对比度：</strong><span>-webkit-filter:contrast(2.5);</span></dd>
+
+        <dt><img src="birds.jpg" style="-webkit-filter:blur(3px);" /></dt>
+        <dd><strong>模糊：</strong><span>-webkit-filter:blur(3px);</span></dd>
+
+        <dt><img src="birds.jpg" style="-webkit-filter:drop-shadow(10px 10px 10px #000);" /></dt>
+        <dd><strong>阴影：</strong><span>-webkit-filter:drop-shadow(10px 10px 3px #000);</span></dd>
+    </dl>
+</body>
+</html>

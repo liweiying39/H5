@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title></title>
+    <link href="css/jquery.fullPage.css" rel="stylesheet">
+    <script src="js/jquery-1.8.3.min.js"></script>
+    <script src="js/jquery.fullPage.js"></script>
+    <style>
+        #menu { margin: 0; padding: 0; position: fixed; left: 10px; top: 10px; list-style-type: none; z-index: 70;}
+        #menu li { float: left; margin:  0 10px 0 0; font-size: 14px;}
+        #menu a { float: left; padding: 10px 20px; background-color: #fff; color: #333; text-decoration: none;}
+        #menu .active a { color: #fff; background-color: #333;}
+        .section { text-align: center; font: 50px "Microsoft Yahei"; color: #fff;}
+        .s1 p{
+            margin-left:-200%;
+            transition:1s 0.7s;
+        }
+        .active.s1 p{
+            margin-left:0;
+        }
+        .s2 p{
+            margin-bottom:-400%;
+            transition:1s 0.7s;
+        }
+        .active.s2 p{
+            margin-bottom:50%;
+        }
+    </style>
+    <script>
+        $(function(){
+            $('#dowebok').fullpage({
+                sectionsColor: ['#1bbc9b', '#4BBFC3', '#7BAABE', '#f90'],
+                anchors: ['page1', 'page2', 'page3', 'page4'],
+                menu: '#menu',
+                'navigation': true,
+                navigationPosition:'left',
+                navigationTooltips:['第一屏','第二屏','第三屏','第四屏']
+
+            });
+//            setInterval(function(){
+//                $.fn.fullpage.moveSectionDown();
+//            }, 2000);
+//            setInterval(function(){
+//                $.fn.fullpage.moveSlideRight();
+//            }, 3000);
+        });
+    </script>
+</head>
+
+<body>
+
+<ul id="menu">
+    <li data-menuanchor="page1" class="active"><a href="#page1">第一屏</a></li>
+    <li data-menuanchor="page2"><a href="#page2">第二屏</a></li>
+    <li data-menuanchor="page3"><a href="#page3">第三屏</a></li>
+    <li data-menuanchor="page4"><a href="#page4">第四屏</a></li>
+</ul>
+
+<div id="dowebok">
+    <div class="section s1"><h1>第一屏</h1><p>kkkdkdfiejfefirjigrigji</p></div>
+    <div class="section s2"><h1>第一屏</h1><p>kkkdkdfiejfefirjigrigji</p></div>
+    <div class="section s3">
+        <div class="slide">第三屏的第一屏</div>
+        <div class="slide">第三屏的第二屏</div>
+        <div class="slide">第三屏的第三屏</div>
+        <div class="slide">第三屏的第四屏</div>
+    </div>
+    <div class="section s4">第四屏</div>
+</div>
+
+</body>
+</html>

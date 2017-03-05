@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	
+</body>
+<script>
+	window.onload = function(){
+		var random = [];
+		var len = ['504','505','506','507','508','女生','南五','中区'];
+		for(var i = 0 ; i < 2 ; i++){
+          var number = Math.floor(Math.random() * len.length) + 0;
+          if(random.indexOf(random[number]) == -1){
+              random.push(len[number]);
+          }else{
+          	i--;
+          }
+		}
+		alert(random);
+	}
+</script>
+</html>
